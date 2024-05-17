@@ -12,6 +12,9 @@ public class SystemMap {
     private int COP_AMOUNT = (int) (Params.INITIAL_COP_DENSITY * patches_num);
     private int AGENT_AMOUNT = (int) (Params.INITIAL_AGENT_DENSITY * patches_num);
 
+    /**
+     * create map with patches
+     */
     public SystemMap() {
         grid = new ArrayList<Patch>(patches_num);
         for (int i = 0; i < patches_num; i++) {
@@ -38,19 +41,25 @@ public class SystemMap {
         }
     }
 
+    /**
+     * put agents and cops into patches randomly
+     */
     public void setup() {
         Random random = new Random();
         for (Cop cop : cops){
             var randomNum = random.nextInt(patches_num - 1);
             /**
-             * if not patch, means the case has been taken
+             * if patch is empty, means the case can be taken
              */
             while(!grid.get(randomNum).getTurtle().isEmpty()) {
                 randomNum = random.nextInt(patches_num - 1);
             }
+            /**
+             * adding cop in empty patch, stored in turtle list.
+             */
             grid.get(randomNum).add(cop);
             /**
-             * Assign coordinate to each cop
+             * Patch is also attached to turtle
              */
             cop.setPatch(grid.get(randomNum));
 
@@ -75,6 +84,9 @@ public class SystemMap {
         return randomPair;
     }
 
+    /**
+     * the turtles' changes for each tick
+     */
     public void step() {
         Collections.shuffle(agents);
         for (Agent agent : agents) {
@@ -91,6 +103,11 @@ public class SystemMap {
         }
     }
 
+    /**
+     * Get all patches in vision radius
+     * @param patch
+     * @return list of patch
+     */
     public ArrayList<Patch> patchesInVision(Patch patch) {
         int x = patch.getX();
         int y = patch.getY();
@@ -110,11 +127,19 @@ public class SystemMap {
         return patches;
     }
 
+    /**
+     * Return a random empty patch in vision
+     * @param patch
+     * @return
+     */
     public Patch findEmpty(Patch patch) {
         ArrayList<Patch> patches = patchesInVision(patch);
         Random random = new Random();
         while (!patches.isEmpty()){
             int i = random.nextInt(patches.size() - 1);
+            /**
+             * if a random patch in vision radius is empty, return
+             */
             if (patches.get(i).empty()) {
                 return patches.get(i);
             } else {
@@ -124,10 +149,14 @@ public class SystemMap {
         return null;
     }
 
-    //get all the turtles in the patches in vision
+    /**
+     * Return all neighbors
+     * @param patch
+     * @return
+     */
     public List<Turtle> getNeighbors(Patch patch) {
         ArrayList<Patch> patches = patchesInVision(patch);
-        ArrayList<Turtle> neighbors = new ArrayList<Turtle>();
+        List<Turtle> neighbors = new ArrayList<>();
         for (Patch p : patches) {
             neighbors.addAll(p.getTurtle());
         }

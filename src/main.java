@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the number of steps to be performed: ");
+        System.out.print("Enter the number of ticks to be performed: ");
         String n = scanner.nextLine();
         int num = Integer.parseInt(n);
 

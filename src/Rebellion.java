@@ -30,7 +30,7 @@ public class Rebellion {
                         tick++;
                         f.println(map.counter());
                         if (tick == num) {
-                            System.out.println("Finished "+ num + " steps!");
+                            System.out.println("Finished "+ num + " ticks!");
                             f.close();
                             running = false;
                         }
