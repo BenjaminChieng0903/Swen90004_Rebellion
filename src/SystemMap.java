@@ -26,12 +26,10 @@ public class SystemMap {
         if (Params.INITIAL_AGENT_DENSITY + Params.INITIAL_COP_DENSITY <= 1) {
             agents = new ArrayList<Agent>(AGENT_AMOUNT);
             cops = new ArrayList<Cop>(COP_AMOUNT);
-            //add slots with agent
             for (int i = 0; i < AGENT_AMOUNT; i++) {
                 Agent agent = new Agent(this);
                 agents.add(agent);
             }
-            //add slots with cop
             for (int i = 0; i < COP_AMOUNT; i++) {
                 Cop cop = new Cop(this);
                 cops.add(cop);
