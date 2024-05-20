@@ -11,9 +11,11 @@ public class Rebellion {
         map = new SystemMap();
         map.setup();
         tick = 0;
+        //f.println(map.counter());
         try {
             f = new PrintWriter("result.csv");
             f.println("quiet,active,jailed");
+            f.println(map.counter());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
