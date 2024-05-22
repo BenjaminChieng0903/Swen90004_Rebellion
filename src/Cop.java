@@ -1,6 +1,9 @@
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Jingning Qian, Baorui Chen
+ */
 public class Cop extends Turtle {
 
     public Cop(SystemMap map) {

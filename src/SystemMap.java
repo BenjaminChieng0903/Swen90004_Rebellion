@@ -3,6 +3,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Jingning Qian, Baorui Chen
+ */
 public class SystemMap {
     private List<Patch> grid;
     private List<Agent> agents;
@@ -169,6 +172,10 @@ public class SystemMap {
         return grid.get(x1 * mapsize + y1);
     }
 
+    /**
+     * Function that count the changes state of each agent at every tick
+     * @return
+     */
     public String counter(){
         int jailed = 0;
         int quiet = 0;

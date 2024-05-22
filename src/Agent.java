@@ -1,6 +1,9 @@
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Jingning Qian, Baorui Chen
+ */
 public class Agent extends Turtle {
     protected double risk_aversion;
     protected double hardship;
@@ -28,7 +31,9 @@ public class Agent extends Turtle {
         return active;
     }
 
-    //set the behaviour of the agent.
+    /**
+     * set the behavior of each agent
+     */
     public void determine_behaviour() {
         List<Turtle> vision = map.getNeighbors(patch);
         int cop_num = 0;

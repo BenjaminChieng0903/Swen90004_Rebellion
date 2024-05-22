@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * This is the entry of the program
  *
- * @author Jingning Qian
+ * @author Jingning Qian, Baorui Chen
  */
 public class main {
     public static void main(String[] args) {
