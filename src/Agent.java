@@ -59,7 +59,7 @@ public class Agent extends Turtle {
     //caught this agent
     public void caught() {
         Random random = new Random();
-        jail_term = random.nextInt(Params.MAX_JAIL_TERM + 1);
+        jail_term = random.nextInt(Params.MAX_JAIL_TERM) + 1;
         active = false;
     }
 
