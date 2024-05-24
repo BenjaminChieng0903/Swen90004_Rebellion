@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author Jingning Qian, Baorui Chen
@@ -89,13 +86,22 @@ public class SystemMap {
      * the turtles' changes for each tick
      */
     public void step() {
+        Iterator<Agent> modifiedAgents = agents.iterator();
+        while(modifiedAgents.hasNext()){
+            var agent = modifiedAgents.next();
+            if(agent.is_dead) {
+                modifiedAgents.remove();
+            }
+        }
+
         Collections.shuffle(agents);
         for (Agent agent : agents) {
-            agent.move();
-            agent.reduce_jail_term();
-            if(!agent.injail()){
-                agent.determine_behaviour();
-            }
+                agent.move();
+                agent.reduce_jail_term();
+                if (!agent.injail()) {
+                    agent.determine_behaviour();
+                }
+
         }
         Collections.shuffle(cops);
         for (Cop cop : cops){
@@ -103,6 +109,7 @@ public class SystemMap {
             cop.enforce();
         }
     }
+
 
     /**
      * Get all patches in vision radius
@@ -115,8 +122,10 @@ public class SystemMap {
         ArrayList<Patch> patches = new ArrayList<Patch>();
         double radius = Params.VISION;
         for (int i = 0; i < radius; i++) {
-            for (int j = 0; j*j < radius*radius - i*i; j++) {
-                if (i == 0 && j == 0) {continue;}
+            for (int j = 0; j * j < radius * radius - i * i; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
                 patches.add(getPatch(x + i, y + j));
                 patches.add(getPatch(x + i, y - j));
                 patches.add(getPatch(x - i, y + j));
@@ -126,6 +135,7 @@ public class SystemMap {
             }
         }
         return patches;
+
     }
 
     /**

@@ -15,6 +15,10 @@ public class Patch {
         this.y = y;
     }
 
+    public ArrayList<Turtle> getContent() {
+        return content;
+    }
+
     public int getX() {
         return x;
     }
